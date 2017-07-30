@@ -9,6 +9,7 @@ object FB {
     @tailrec
     def buzzify(index: Int, acc: List[String]): List[String] = index match {
       case n if n > range.last => acc
+      case n if contains(n, "3") => buzzify(index + 1, "lucky" :: acc)
       case n if multipleOf15(n) => buzzify(index + 1, "fizzbuzz" :: acc)
       case n if multipleOf5(n) => buzzify(index + 1, "buzz" :: acc)
       case n if multipleOf3(n) => buzzify(index + 1, "fizz" :: acc)
@@ -24,5 +25,7 @@ object FB {
   private[fizzbuzz] def multipleOf5(n: Int) = n > 0 && multipleOf(n, 5)
 
   private[fizzbuzz] def multipleOf15(n: Int) = n > 0 && multipleOf(n, 15)
+
+  private[fizzbuzz] def contains(n: Int, s: String) = n.toString.indexOf(s) != -1
 
 }
