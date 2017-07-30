@@ -15,7 +15,12 @@ object FB {
       case n if multipleOf3(n) => buzzify(index + 1, "fizz" :: acc)
       case _ => buzzify(index + 1, index.toString :: acc)
     }
-    buzzify(range.head, List.empty).reverse.mkString(" ")
+
+    val result = buzzify(range.head, List.empty).reverse
+    val (digits, words) = result.partition(_.forall(_.isDigit))
+    val fizzBuzzCounts = words.groupBy(identity).map(d => s"${d._1}: ${d._2.size}")
+    val fizzBuzzResults = if(fizzBuzzCounts.nonEmpty) fizzBuzzCounts.mkString(" ", " ", "") else ""
+    s"${result.mkString(" ")}$fizzBuzzResults integer: ${digits.size}"
   }
 
   private val multipleOf = (a: Int, n: Int) => a % n == 0

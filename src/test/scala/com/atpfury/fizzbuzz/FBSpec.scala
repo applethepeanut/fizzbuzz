@@ -9,12 +9,12 @@ class FBSpec extends WordSpecLike with Matchers {
 
     val ranges = Table(
       ("range", "result"),
-      (0 to 0, "0"),
-      (1 to 2, "1 2"),
-      (1 to 3, "1 2 lucky"),
-      (1 to 5, "1 2 lucky 4 buzz"),
-      (1 to 6, "1 2 lucky 4 buzz fizz"),
-      (1 to 20, "1 2 lucky 4 buzz fizz 7 8 fizz buzz 11 fizz lucky 14 fizzbuzz 16 17 fizz 19 buzz")
+      (0 to 0, "0 integer: 1"),
+      (1 to 2, "1 2 integer: 2"),
+      (1 to 3, "1 2 lucky lucky: 1 integer: 2"),
+      (1 to 5, "1 2 lucky 4 buzz buzz: 1 lucky: 1 integer: 3"),
+      (1 to 6, "1 2 lucky 4 buzz fizz fizz: 1 buzz: 1 lucky: 1 integer: 3"),
+      (1 to 20, "1 2 lucky 4 buzz fizz 7 8 fizz buzz 11 fizz lucky 14 fizzbuzz 16 17 fizz 19 buzz fizz: 4 buzz: 3 fizzbuzz: 1 lucky: 2 integer: 10")
     )
 
     forAll(ranges) { (range, result) =>
